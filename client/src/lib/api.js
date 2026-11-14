@@ -1,5 +1,8 @@
 const TOKEN_KEY = 'queuely.token';
 
+/** True in the GitHub Pages build, where the API runs in the browser (see localBackend.js). */
+export const STATIC_MODE = import.meta.env.VITE_STATIC === '1';
+
 export const session = {
   get: () => {
     try { return localStorage.getItem(TOKEN_KEY); } catch { return null; }
@@ -23,6 +26,16 @@ let onUnauthorized = () => {};
 export const setUnauthorizedHandler = (fn) => { onUnauthorized = fn; };
 
 export async function api(path, { method = 'GET', body, auth = true } = {}) {
+  if (STATIC_MODE) {
+    const { localRequest } = await import('./localBackend');
+    try {
+      return await localRequest(path, { method, body, token: auth ? session.get() : null });
+    } catch (err) {
+      if (err.status === 401 && auth) onUnauthorized();
+      throw new ApiError(err.status || 500, err.message);
+    }
+  }
+
   const headers = {};
   if (body !== undefined) headers['Content-Type'] = 'application/json';
   const token = session.get();

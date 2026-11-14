@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { useAuth } from '../lib/auth';
+import { STATIC_MODE } from '../lib/api';
 import Logo from '../components/Logo';
 
 export default function AuthPage({ mode }) {
@@ -82,6 +83,13 @@ export default function AuthPage({ mode }) {
               onClick={() => submit(null, { email: 'demo@queuely.app', password: 'demo1234' })}>
               <Sparkles size={16} /> Explore with the demo account
             </button>
+          )}
+
+          {STATIC_MODE && (
+            <p className="static-note">
+              Live demo on GitHub Pages: the API runs in your browser and data is saved on this device only.
+              The full Express + SQLite version is in the <a href="https://github.com/sanathexe-dev/queuely" target="_blank" rel="noreferrer">repository</a>.
+            </p>
           )}
 
           <p className="switch">

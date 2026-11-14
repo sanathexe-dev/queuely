@@ -1,5 +1,7 @@
 # Queuely: Queue Management System
 
+**Live demo:** https://sanathexe-dev.github.io/queuely/ (click *Explore with the demo account*)
+
 A full-stack queue management app. A manager signs in, creates queues, issues tokens to people, reorders the line, calls the next person with one click, cancels tokens and tracks wait times on an analytics dashboard.
 
 ![Queue screen](docs/queue.png)
@@ -42,6 +44,12 @@ npm start         # http://localhost:4000  (API + UI on one port)
 ```
 
 Demo login: **demo@queuely.app / demo1234** (or click *Explore with the demo account*).
+
+### Live demo on GitHub Pages
+
+GitHub Pages only serves static files, so the Pages build runs in **static demo mode**. The React app is unchanged. The only difference is that its API calls go to `client/src/lib/localBackend.js`, a small in-browser copy of the Express routes, instead of the network. That copy has the same endpoints, validation rules, status codes and analytics maths, and keeps data in `localStorage`, so each visitor gets their own private sandbox.
+
+`.github/workflows/pages.yml` builds this on every push to `main` (`VITE_STATIC=1`) and deploys it. The full-stack version (Express + SQLite, shared data, real auth) is what `npm start` runs.
 
 ### Development (hot reload)
 

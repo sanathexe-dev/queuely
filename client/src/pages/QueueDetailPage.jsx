@@ -142,7 +142,7 @@ export default function QueueDetailPage() {
           </div>
         </div>
         <div className="head-actions">
-          <a className="btn" href={`/display/${queue.displayKey}`} target="_blank" rel="noreferrer"><Monitor size={16} /> Display screen</a>
+          <a className="btn" href={`${import.meta.env.BASE_URL}display/${queue.displayKey}`} target="_blank" rel="noreferrer"><Monitor size={16} /> Display screen</a>
           <button className="btn icon-only" onClick={() => setRenaming(true)} aria-label="Edit queue" title="Edit queue"><Pencil size={16} /></button>
           <button className="btn icon-only danger-ghost" onClick={() => setConfirm({ kind: 'delete-queue' })} aria-label="Delete queue" title="Delete queue"><Trash2 size={16} /></button>
         </div>

@@ -121,6 +121,7 @@ select { padding-right: 34px; appearance: none; cursor: pointer;
 .auth-form h2 { font-size: 26px; font-weight: 800; }
 .auth-form > p.muted { margin: 6px 0 28px; }
 .demo-btn { margin-top: 10px; border-style: dashed; }
+.static-note { margin: 18px 0 0; padding: 10px 12px; border-radius: 10px; background: #ecebe5; color: var(--ink-2); font-size: 13px; line-height: 1.45; }
 .switch { text-align: center; margin-top: 22px; color: var(--muted); font-size: 14px; }
 .switch a { font-weight: 700; }
 
